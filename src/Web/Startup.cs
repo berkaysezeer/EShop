@@ -13,6 +13,8 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Infrastructure.Identity;
 using ApplicationCore.Data;
+using ApplicationCore.Interfaces;
+using Infrastructure.Data;
 
 namespace Web
 {
@@ -40,6 +42,9 @@ namespace Web
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
+                                //appcore                   //infra
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>)); 
+            //UI Iasyncrepo ile infra'ya erisim saglar
 
             services.AddControllersWithViews();
             services.AddRazorPages();
