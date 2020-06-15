@@ -15,6 +15,8 @@ using Infrastructure.Identity;
 using ApplicationCore.Data;
 using ApplicationCore.Interfaces;
 using Infrastructure.Data;
+using Web.Interfaces;
+using Web.Services;
 
 namespace Web
 {
@@ -42,9 +44,11 @@ namespace Web
                 .AddDefaultUI()
                 .AddEntityFrameworkStores<AppIdentityDbContext>()
                 .AddDefaultTokenProviders();
-                                //appcore                   //infra
-            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>)); 
+            //appcore                   //infra
+            services.AddScoped(typeof(IAsyncRepository<>), typeof(EfRepository<>));
             //UI Iasyncrepo ile infra'ya erisim saglar
+
+            services.AddScoped<IHomeIndexViewModelService, HomeIndexViewModelService>();
 
             services.AddControllersWithViews();
             services.AddRazorPages();
