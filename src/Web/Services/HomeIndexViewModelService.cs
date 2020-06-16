@@ -44,13 +44,16 @@ namespace Web.Services
             return items;
         }
 
-        public async Task<HomeIndexViewModel> GetHomeIndexViewModel()
+        public async Task<HomeIndexViewModel> GetHomeIndexViewModel(int? categoryId, int? brandId)
         {
             var vm = new HomeIndexViewModel
             {
                 Categories = await GetCategories(),
                 Brands = await GetBrands(),
-                Products = await _productRepository.ListAllAsync()
+                Products = await _productRepository.ListAsync(x =>
+                (!categoryId.HasValue || x.CategoryId == categoryId) && (!brandId.HasValue || x.BrandId == brandId)),
+                CategoryId = categoryId,
+                BrandId = brandId
             };
 
             return vm;
