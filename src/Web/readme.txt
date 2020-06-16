@@ -20,6 +20,9 @@ UI layer types
 * Startup
 
 == Packages == 
+Application Core
+Install-Package Ardalis.Specification
+
 
 Install-Package Microsoft.EntityFrameworkCore.Tools
 Install-Package Microsoft.EntityFrameworkCore.SqlServer

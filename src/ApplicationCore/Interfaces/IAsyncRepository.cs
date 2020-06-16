@@ -1,4 +1,5 @@
 ﻿using ApplicationCore.Entities;
+using Ardalis.Specification;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
@@ -9,6 +10,6 @@ namespace ApplicationCore.Interfaces
     public interface IAsyncRepository<T> where T : BaseEntity
     {
         Task<IReadOnlyList<T>> ListAllAsync();
-        Task<IReadOnlyList<T>> ListAsync(Expression<Func<T, bool>> predicate);
+        Task<IReadOnlyList<T>> ListAsync(ISpecification<T> specification);
     }
 }
