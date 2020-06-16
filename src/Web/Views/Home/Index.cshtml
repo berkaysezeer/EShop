@@ -31,5 +31,9 @@
         <partial name="_ProductPartial" model="product" />
     }
 
+</div>
 
+<div>
+    <span class="font-weight-bold">Sayfa:</span> @Model.PaginationInfo.ActualPage / @Model.PaginationInfo.TotalPages <br />
+    <span class="font-weight-bold">Ürün Sayısı:</span> @Model.PaginationInfo.ItemsOnPage / @Model.PaginationInfo.TotalItems<br />
 </div>
