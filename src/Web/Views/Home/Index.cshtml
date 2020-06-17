@@ -1,8 +1,8 @@
 ﻿@model HomeIndexViewModel
 @{
     ViewData["Title"] = "Home Page";
-}
 
+}
 
 <form>
     <div class="row">
@@ -24,16 +24,23 @@
 </form>
 
 
-<div class="row">
+@if (Model.Products.Count > 0)
+{
+    <div class="row">
 
-    @foreach (var product in Model.Products)
-    {
-        <partial name="_ProductPartial" model="product" />
-    }
+        @foreach (var product in Model.Products)
+        {
+            <partial name="_ProductPartial" model="product" />
+        }
 
-</div>
+    </div>
 
-<div>
-    <span class="font-weight-bold">Sayfa:</span> @Model.PaginationInfo.ActualPage / @Model.PaginationInfo.TotalPages <br />
-    <span class="font-weight-bold">Ürün Sayısı:</span> @Model.PaginationInfo.ItemsOnPage / @Model.PaginationInfo.TotalItems<br />
-</div>
+    <partial name="_Paginationpartial" model="Model.PaginationInfo" />
+}
+else
+{
+    <div class="text-center p-5">
+        No Products were found matching your selection.
+    </div>
+}
+
